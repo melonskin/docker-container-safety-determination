@@ -94,8 +94,8 @@ Simply by `~/mongod`
 #### Mongo shell
 
 
-Run local Mongo shell by `mongo`
-Connect a remote MongoDB: `mongo --host 34.233.78.56`
+- Run local Mongo shell by `mongo`
+- Connect a remote MongoDB: `mongo --host 34.233.78.56`
 
 
 #### Install pymongo
@@ -122,10 +122,10 @@ In mongo shell, create DB needed for this application.
 Test on a Ubuntu 16.04 virtual machine.
 
 
-<https://docs.docker.com/install/linux/docker-ce/ubuntu/>
+Reference: <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
 
 
-Install `docker-compose` according to <https://docs.docker.com/compose/install/#install-compose>
+Also install `docker-compose` according to <https://docs.docker.com/compose/install/#install-compose>
 
 
 #### Enable HTTP request
@@ -139,7 +139,7 @@ $ sudo vim /etc/docker/daemon.json
 ```
 
 
-Add below to the configuration file::  
+Add below to the configuration file:  
 
 
 ```
@@ -244,14 +244,14 @@ $ docker pull REGISTRY_IP:REGISTRY_PORT/image_name
 #### Docker build image
 
 
-1. See [this link](https://docs.docker.com/engine/reference/builder/#escape)  
-2. Use `COPY` to copy files in context directory to the new image.  
-3. See the reference link for `RUN` and `CMD` command.  
-4. Build with following command. Note the dot at the end, as context directory.
+1. See [this link](https://docs.docker.com/engine/reference/builder/#escape)
+2. Use `COPY` to copy files in context directory to the new image.
+3. See the reference link for `RUN` and `CMD` command.
+4. Build with following command.
 
 
 ```shell
-$ docker build -t your_container_name:version_tag dir.
+$ docker build -t your_container_name:version_tag context_dir_path
 ```
 
 #### Docker push image
@@ -332,7 +332,7 @@ $ docker image ls
 ### View push results
 
 
-Push results can be viewed through browser at `REGISTRY_IP:WEB_PORT/results`. Successful pushes are marked with OK. Failed pushes lists those suspicious files.
+Push results can be viewed through browser at `http://REGISTRY_IP:WEB_PORT/results`. Successful pushes are marked with OK. Failed pushes lists those suspicious files.
 
 
 ## Example
@@ -410,4 +410,8 @@ It is also a great experience working in a group. Teamwork is indeed powerful an
 - <https://okrieg.github.io/EC500/PROJECTS/2016/sastry.html>
 - <https://www.nist.gov/software-quality-group/national-software-reference-library-nsrl>
 - <http://roussev.net/sdhash/sdhash.html>
+- <https://github.com/docker/distribution/issues/1874>
+- <https://docs.docker.com/engine/reference/builder/#escape>
+- <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
+- <https://docs.docker.com/compose/install/#install-compose>
 

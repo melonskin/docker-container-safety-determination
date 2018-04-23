@@ -72,14 +72,14 @@ $ docker pull REGISTRY_IP:REGISTRY_PORT/image_name
 ### Docker build image
 
 
-1. See [this link](https://docs.docker.com/engine/reference/builder/#escape)  
-2. Use `COPY` to copy files in context directory to the new image.  
-3. See the reference link for `RUN` and `CMD` command.  
-4. Build with following command. Note the dot at the end, as context directory.
+1. See [this link](https://docs.docker.com/engine/reference/builder/#escape)
+2. Use `COPY` to copy files in context directory to the new image.
+3. See the reference link for `RUN` and `CMD` command.
+4. Build with following command. 
 
 
 ```shell
-$ docker build -t your_container_name:version_tag dir.
+$ docker build -t your_container_name:version_tag context_dir_path
 ```
 
 ### Docker push image
@@ -160,4 +160,4 @@ $ docker image ls
 ## View push results
 
 
-Push results can be viewed through browser at `REGISTRY_IP:WEB_PORT/results`. Successful pushes are marked with OK. Failed pushes lists those suspicious files.
+Push results can be viewed through browser at `http://REGISTRY_IP:WEB_PORT/results`. Successful pushes are marked with OK. Failed pushes lists those suspicious files.
