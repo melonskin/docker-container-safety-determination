@@ -338,6 +338,9 @@ Push results can be viewed through browser at `http://REGISTRY_IP:WEB_PORT/resul
 ## Example
 
 
+This service is deployed along with a public Docker registry on a virtual server on Digital Ocean. Anyone can configure their client side and push&pull images to/from this registry. Our program provides a guard for this registry to identify and remove malicious images.
+
+
 ### Registry side
 
 
