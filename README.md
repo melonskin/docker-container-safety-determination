@@ -1,12 +1,48 @@
-## Introduction
+## Project specification
+
+
+Our project aims to provide a cloud service to verify the security for docker development, preventing malicious code compromising the infrastructures. The safety scan contains two parts, first, we will check the docker image uploaded by the developer in the private registry. Second, we will scan the running docker containers in the production development. Thus to make sure the security of the docker development and deployment.
+
+
+## Background and motivation
+
+
+Docker greatly simplifies the deployment and management of application. For example, to deploy an application consisting of a set of services one pulls corresponding docker images from a registry and wires them together. 
+
+
+However, there are plenty of security vulnerability across the development stacks. During the development, the developers may pull images which contains malicious code or the developers themselves maybe compromised to intentionally inject malicious code to the application. Besides, during the deployment of docker containers in the production environment. The docker image may get attacked, for example due to the security vulnerability of the production environment.  In this project, we propose a solution to address these problems.
+
+
+## Design
+
+
+In this project, we propose to build a prototype software to demonstrate our approach. The software mainly contains three parts: 
+
+
+1. A background crawler that pull the docker images that are pushed to the private registry. 
+2. A docker image scanner to determine whether the image is malicious or not. To determine if the given images are malicious or not, we intend to compare the suspicious images with the Reference Data Set (RDS) collected by National Software Reference Library (NSRL). The RDS incorporates application hash values in the hashset which may be considered malicious, i.e. steganography tools and hacking scripts.
+    - A local database can be used to cache those scanned files and thus to reduce the cost of scanning.
+3. A background scanner to scan the running docker containers in the production environment. We intend to implement scanning scheduling, while use 3rd party tools for container scan.
+
+
+The basic software we expect to implement contains the above docker image scan and docker container scan. Further, we may focus on the performance optimization for large scale system or we may consider more security vulnerabilities for docker development and deployment and implement approach to tackle them.
+
+
+## Implementation
 
 
 This is a service associated with a docker registry that can inspect pushed docker containers and figure out whether they are safe.
 
 
-1. ClamAV is used to detect virus files
-2. sdhash values are calculated for each file for caching purpose
-3. MongoDB is used to store sdhashes, allow faster examination of previously checked files 
+1. ClamAV is used to detect virus files.
+2. sdhash values are calculated for each file for caching purpose.
+3. MongoDB is used to store sdhashes, allow faster examination of previously checked files.
+4. A registry application is running as a docker container. The virus checking happens every time we push an image into this registry.
+5. Once we have a newly pushed image, the program will download and untar it into a local directory then do virus checking on all files there. 
+6. If an image is detected as suspicious, the program will delete it in the registry.
+7. The results can be shown in browser with the help of flask server.
+8. In the client side or production environment. A background service that monitoring the running containers.
+9. If there's malware found in the container, it will delete the related containers as well as the docker images and also printing the log into the console.
 
 
 ## Installation and pre-configuration

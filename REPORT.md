@@ -1,10 +1,3 @@
----
-title:  CSCE689 Project 2 - Container Safety Determination Report
-author: Qingqing Li 424001753, Shijin Tang 523005303, Mian Qin 725006574
-geometry: margin=2cm
----
-
-
 ## Time efforts
 
 
